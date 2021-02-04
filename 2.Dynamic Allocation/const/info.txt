@@ -1,0 +1,15 @@
+The usage of const is not to restrict overwriting on a memory location.
+These locations will be overwritten anyways once the program ends.
+
+The usage of const is to reduce the access of the various paths that 
+may lead to a particular memory location.
+
+That being said, a non-const int can have a pointer
+declared as pointing to a const int.
+
+So as to determine if an action related to const refs and ptrs is allowed,
+remember that refs or ptrs can have either the same access as to what 
+they refer or where they point to, or lower access, but not higher access.
+
+Lower access => Read only
+Higher access => Read Write
