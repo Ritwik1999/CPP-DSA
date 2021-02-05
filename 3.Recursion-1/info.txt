@@ -1,0 +1,8 @@
+Approach any Recursion problem using PMI.
+
+Steps:
+1. Find the stopping case (where the recursion stops) i.e., the base case, where the solution is trivial.
+2. Assume (do not question if it is correct) that the function is true for all i <= k (This is where you make recursive calls. Again, do not think, just assume>
+3. Prove that the function is true for k+1 (i.e., perform appropriate computation on the previous result that is assumed to be true, and return this answer).
+
+Do not think at step 2, just code, after that you can have a dry run using pen and paper.
