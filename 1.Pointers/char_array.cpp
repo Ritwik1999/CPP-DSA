@@ -10,6 +10,8 @@ int main()
     cout << b << endl;
     cout << b[1] << endl;
 
+    // b = "Ritwik";    Not possible; vars of type char [] are constant literals
+
     char *p = &b[1];
     cout << p << endl;
 
