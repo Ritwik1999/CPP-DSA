@@ -34,4 +34,8 @@ int main()
     cout << s.substr(3, 3) << endl;
 
     cout << s.find("def") << endl;
+
+    string sample = "";
+    sample += "";
+    cout << sample.size() << endl;
 }
