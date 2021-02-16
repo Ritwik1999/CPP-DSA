@@ -7,53 +7,8 @@
 #include <iostream>
 #include <string>
 using namespace std;
-    
-string keypadStringOf(int digit)
-{
-    string res;
-    switch (digit)
-    {
-    case 2:
-        res = "abc";
-        break;
 
-    case 3:
-        res = "def";
-        break;
-
-    case 4:
-        res = "ghi";
-        break;
-
-    case 5:
-        res = "jkl";
-        break;
-
-    case 6:
-        res = "mno";
-        break;
-
-    case 7:
-        res = "pqrs";
-        break;
-
-    case 8:
-        res = "tuv";
-        break;
-
-    case 9:
-        res = "wxyz";
-        break;
-
-    default:
-        res = "";
-        break;
-    }
-
-    return res;
-}
-
-int keypad(int num, string output[])
+int keypad(int num, string output[], string options[])
 {
     // Base Case
     if (num == 0)
@@ -63,11 +18,11 @@ int keypad(int num, string output[])
     }
 
     // Recursion
-    int smallerOutputSize = keypad(num / 10, output);
+    int smallerOutputSize = keypad(num / 10, output, options);
 
     // Computation
     int onesDigit = num % 10;
-    string digitString = keypadStringOf(onesDigit);
+    string digitString = options[onesDigit];
     int digitStringLength = digitString.size();
     int ans = digitStringLength * smallerOutputSize;
     string *tempStr = new string[ans];
@@ -96,7 +51,9 @@ int main()
     cin >> num;
 
     string output[10000];
-    int count = keypad(num, output);
+    string keypadStrings[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+    int count = keypad(num, output, keypadStrings);
     for (int i = 0; i < count && i < 10000; i++)
     {
         cout << output[i] << endl;
