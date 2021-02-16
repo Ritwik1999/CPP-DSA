@@ -4,7 +4,15 @@
 */
 
 #include <bits/stdc++.h>
+#include <sys/time.h>
 using namespace std;
+
+long getTimeinMicroSeconds()
+{
+    struct timeval start;
+    gettimeofday(&start, NULL);
+    return start.tv_sec * 1000000 + start.tv_usec;
+}
 
 void SelSort(int input[], int n)
 {
@@ -36,26 +44,25 @@ void SelSort(int input[], int n)
 
 int main()
 {
-    int n;
-    cin >> n;
+    int* arr = 0;
 
-    int* arr = new int[n];
-
-    for (int i = 0; i < n; i++)
+    for (int n = 10; n <= 1000000; n *= 10)
     {
-        cin >> arr[i];
+        arr = new int[n];
+        long starttime, endtime;
+
+        for (int i = 0; i < n; i++)
+        {
+            arr[i] = n - i;
+        }
+
+        starttime = getTimeinMicroSeconds();
+        SelSort(arr, n);
+        endtime = getTimeinMicroSeconds();
+
+        cout << "Selection Sort n = " << n << " time = " << endtime - starttime << endl;
     }
-
-    SelSort(arr, n);
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
-
-    cout << endl;
 
     delete [] arr;
-
     return 0;
 }

@@ -1,11 +1,13 @@
-/*
-    Merge Sort:
-    Keep dividing the array into two halves and call the merge sort function upon them.
-    Finally, merge both of them.
-*/
-
+#include <sys/time.h>
 #include <iostream>
 using namespace std;
+
+long getTimeinMicroSeconds()
+{
+    struct timeval start;
+    gettimeofday(&start, NULL);
+    return start.tv_sec * 1000000 + start.tv_usec;
+}
 
 void Merge2SortedArrays(int input[], int si, int ei)
 {
@@ -59,7 +61,7 @@ void Merge2SortedArrays(int input[], int si, int ei)
     return;
 }
 
-void execMergeSort(int input[], int si, int ei)
+void mergesort(int input[], int si, int ei)
 {
     // Base Case
     if (si >= ei)
@@ -69,8 +71,8 @@ void execMergeSort(int input[], int si, int ei)
 
     // Recursion
     int mid = (si + ei) / 2;
-    execMergeSort(input, si, mid);
-    execMergeSort(input, mid + 1, ei);
+    mergesort(input, si, mid);
+    mergesort(input, mid + 1, ei);
 
     // Computation
     Merge2SortedArrays(input, si, ei);
@@ -78,24 +80,28 @@ void execMergeSort(int input[], int si, int ei)
     return;
 }
 
-void mergeSort(int input[], int size)
-{
-    execMergeSort(input, 0, size - 1);
-}
-
 int main()
 {
-    int length;
-    cin >> length;
-    int *input = new int[length];
-    for (int i = 0; i < length; i++)
-        cin >> input[i];
-    mergeSort(input, length);
-    for (int i = 0; i < length; i++)
+    int* arr = 0;
+
+    for (int n = 10; n <= 1000000; n *= 10)
     {
-        cout << input[i] << " ";
+        arr = new int[n];
+        long starttime, endtime;
+
+        for (int i = 0; i < n; i++)
+        {
+            arr[i] = n - i;
+        }
+
+        starttime = getTimeinMicroSeconds();
+        mergesort(arr, 0, n-1);
+        endtime = getTimeinMicroSeconds();
+
+        cout << "Merge Sort n = " << n << " time = " << endtime - starttime << endl;
     }
 
-    cout << endl;
+    delete [] arr;
     return 0;
 }
+
