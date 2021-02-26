@@ -2,6 +2,10 @@
     this is a keyword in c++. It is a pointer that points to the object on which
     a member function was invoked. It lets you access the object properties,
     and resolve naming ambiguity.
+
+    NOTE: Any member function that uses data members without this keyword
+    can be considered using it implicitly (given there are no argument data member naming conflicts).
+    Same goes for (non-static) member functions
 */
 
 #include <iostream>
