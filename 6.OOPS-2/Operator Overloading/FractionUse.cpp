@@ -29,5 +29,13 @@ int main()
     else
         cout << "Not Equal" << endl;
 
+    cout << "----------Unary Operator Overloading----------" << endl;
+
+    f1.setNumerator(10);
+    f1.setDenominator(2);
+    
+    ++(++f1);
+    f1.print();
+
     return 0;
 }

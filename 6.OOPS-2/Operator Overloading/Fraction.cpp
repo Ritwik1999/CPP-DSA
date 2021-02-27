@@ -51,7 +51,7 @@ public:
     void simplify()
     {
         int gcd = 1;
-        for (int i = 1; i < min(numerator, denominator); i++)
+        for (int i = 1; i <= min(numerator, denominator); i++)
         {
             if (numerator % i == 0 && denominator % i == 0)
             {
@@ -94,5 +94,25 @@ public:
         simplify();
         f2.simplify();    
         return (numerator == f2.numerator && denominator == f2.denominator);
+    }
+
+    /*
+        Unary Operator Overloading (see the pic first)
+        Pre increment, the return type and value allows us to perform something like Fraction fNew = ++f1;
+
+        The return type being a ref allows us to chain multiple operators, if a ref is not returned,
+        the return value would be copied to a buffer memory and it'd be passed to the calling place.
+        That way, the chained operators would work on temp buffer memory, rather than the original memory.
+
+        This is the case with any value returned in general, or even with something like int i = 5;
+        In the latter case, 5 is stored in a buffer memory until the variable i is allocated memory, 
+        after which 5 is copied on to i.
+    */
+    Fraction& operator++()
+    {
+        numerator += denominator;  // i.e. this->numerator += this->denominator
+        simplify();                // i.e. this->simplify()
+
+        return *this;              // See the pic to know what this holds
     }
 };
