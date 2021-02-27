@@ -115,4 +115,30 @@ public:
 
         return *this;              // See the pic to know what this holds
     }
+
+    // Post increment operator, the signature is as below
+    Fraction operator++(int)
+    {
+        Fraction fNew(numerator, denominator);
+        numerator += denominator;
+        simplify();
+        fNew.simplify();
+        return fNew;
+    }
+
+    // += operator
+    Fraction& operator+=(Fraction const &f2)
+    {
+        int lcm = denominator * f2.denominator;
+        int x = lcm / denominator;
+        int y = lcm / f2.denominator;
+
+        int num = x * numerator + (y * f2.numerator);
+
+        numerator = num;
+        denominator = lcm;
+        simplify();
+
+        return *this;
+    }
 };
