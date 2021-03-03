@@ -44,11 +44,11 @@ Node *takeInput()
 {
     int data;
     cin >> data;
-    Node* head = nullptr;
+    Node *head = nullptr;
 
     while (data != -1)
     {
-        Node* newNode = new Node(data);
+        Node *newNode = new Node(data);
 
         if (head == nullptr)
         {
@@ -56,8 +56,8 @@ Node *takeInput()
         }
         else
         {
-            Node* temp = head;
-            while(temp->next != nullptr)
+            Node *temp = head;
+            while (temp->next != nullptr)
             {
                 temp = temp->next;
             }
@@ -75,12 +75,12 @@ Node *takeInputBetter()
 {
     int data;
     cin >> data;
-    Node* head = nullptr;
-    Node* tail = nullptr;
+    Node *head = nullptr;
+    Node *tail = nullptr;
 
     while (data != -1)
     {
-        Node* newNode = new Node(data);
+        Node *newNode = new Node(data);
 
         if (head == nullptr)
         {
@@ -89,7 +89,7 @@ Node *takeInputBetter()
         }
         else
         {
-            Node* temp = head;
+            Node *temp = head;
             tail->next = newNode;
             tail = newNode;
         }
@@ -103,29 +103,29 @@ Node *takeInputBetter()
 void printIthNode(Node *head, int i)
 {
     int len = 0;
-    Node* temp = head;
-    
-    while(temp != nullptr)
+    Node *temp = head;
+
+    while (temp != nullptr)
     {
         len++;
         temp = temp->next;
     }
-    
+
     if (i >= len)
     {
         return;
     }
-    
+
     temp = head;
     int index = 0;
-    while(index != i)
+    while (index != i)
     {
         temp = temp->next;
         index++;
     }
-    
+
     cout << temp->data << endl;
-    
+
     return;
 }
 
@@ -166,7 +166,7 @@ int main()
     print(dynamic_head);
 
     // testing takeInput function
-    Node* head = takeInputBetter();
+    Node *head = takeInputBetter();
     print(head);
 
     return 0;
