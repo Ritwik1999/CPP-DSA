@@ -32,19 +32,20 @@ Node *takeInput()
     return head;
 }
 
-int length(Node *head) {   
+int length(Node *head)
+{
     // Base Case
     if (head == nullptr)
     {
         return 0;
     }
-    
+
     // Recursion
     int length_so_far = length(head->next);
-    
+
     // Computation
     ++length_so_far;
-    
+
     return length_so_far;
 }
 
@@ -119,6 +120,84 @@ Node *deleteNode(Node *head, int pos)
         toBeDeleted->next = nullptr;
         delete toBeDeleted;
     }
+
+    return head;
+}
+
+Node *insertNodeRecursive(Node *head, int i, int data)
+{
+    // Base Case
+    if (head == nullptr)
+    {
+        // To check if i == length of list
+        if (i == 0)
+        {
+            Node *newNode = new Node(data);
+            newNode->next = head;
+            head = newNode;
+        }
+        return head;
+    }
+
+    // Computation
+    if (i == 0)
+    {
+        Node *newNode = new Node(data);
+        newNode->next = head;
+        head = newNode;
+        return head;
+    }
+
+    // Recursion
+    head->next = insertNodeRecursive(head->next, i - 1, data);
+
+    return head;
+}
+
+int findNodeRecursive(Node *head, int searchVal, int curr_index)
+{
+    // Base Case
+    if (head == nullptr)
+    {
+        return -1;
+    }
+
+    // Computation
+    if (head->data == searchVal)
+    {
+        return curr_index;
+    }
+
+    // Recursion
+    int found = findNodeRecursive(head->next, searchVal, curr_index + 1);
+
+    return found;
+}
+
+int findNode(Node *head, int n)
+{
+    return findNodeRecursive(head, n, 0);
+}
+
+Node *deleteNodeRecursive(Node *head, int pos)
+{
+    // Base Case
+    if (head == nullptr)
+    {
+        return nullptr;
+    }
+
+    // Computation
+    if (pos == 0)
+    {
+        Node *delNode = head;
+        head = head->next;
+        delete delNode;
+        return head;
+    }
+
+    // Recursion
+    head->next = deleteNodeRecursive(head->next, pos - 1);
 
     return head;
 }
