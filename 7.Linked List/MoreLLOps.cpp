@@ -60,6 +60,21 @@ void print(Node *head)
     cout << endl;
 }
 
+void printReverse(Node *head)
+{    
+    // Base Case
+    if (head == nullptr)
+    {
+        return;
+    }
+    
+    // Recursion
+    printReverse(head->next);
+    
+    // Computation
+    cout << head->data << " ";
+}
+
 Node *insertNode(Node *head, int i, int data)
 {
     Node *newNode = new Node(data);
@@ -198,6 +213,36 @@ Node *deleteNodeRecursive(Node *head, int pos)
 
     // Recursion
     head->next = deleteNodeRecursive(head->next, pos - 1);
+
+    return head;
+}
+
+Node *appendLastNToFirst(Node *head, int n)
+{
+    if (n == 0 || head == nullptr)
+    {
+        return head;
+    }
+
+    Node *temp = head;
+    int len = length(head), i = 1;
+
+    while (temp->next != nullptr)
+    {
+        temp = temp->next;
+    }
+
+    temp->next = head;
+    temp = head;
+
+    while (i < (len - n))
+    {
+        temp = temp->next;
+        i++;
+    }
+
+    head = temp->next;
+    temp->next = nullptr;
 
     return head;
 }
