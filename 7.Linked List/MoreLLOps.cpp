@@ -61,16 +61,16 @@ void print(Node *head)
 }
 
 void printReverse(Node *head)
-{    
+{
     // Base Case
     if (head == nullptr)
     {
         return;
     }
-    
+
     // Recursion
     printReverse(head->next);
-    
+
     // Computation
     cout << head->data << " ";
 }
@@ -245,6 +245,68 @@ Node *appendLastNToFirst(Node *head, int n)
     temp->next = nullptr;
 
     return head;
+}
+
+Node *removeDuplicates(Node *head)
+{
+    if (head == nullptr)
+        return head;
+
+    Node *temp = head;
+    while (temp != nullptr)
+    {
+        int count = 0;
+        Node *similarLast = temp;
+
+        while (similarLast->next != nullptr && similarLast->next->data == temp->data)
+        {
+            count++;
+            similarLast = similarLast->next;
+        }
+
+        if (count != 0)
+        {
+            Node *similarFirst = temp->next, *prev = similarFirst;
+
+            while (similarFirst != similarFirst)
+            {
+                prev = similarFirst;
+                similarFirst = similarFirst->next;
+                delete prev;
+            }
+
+            temp->next = similarLast->next;
+            delete similarFirst;
+        }
+
+        temp = temp->next;
+    }
+    return head;
+}
+
+bool isPalindromeRec(Node *head, int jumps)
+{
+    if (head == nullptr || jumps <= 0)
+    {
+        return true;
+    }
+
+    Node *temp = head;
+
+    for (int i = 0; i < jumps; i++)
+    {
+        temp = temp->next;
+    }
+
+    if (head->data != temp->data)
+        return false;
+
+    return isPalindromeRec(head->next, jumps - 2);
+}
+
+bool isPalindrome(Node *head)
+{
+    return isPalindromeRec(head, length(head) - 1);
 }
 
 int main()
