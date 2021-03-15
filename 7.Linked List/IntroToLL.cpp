@@ -89,7 +89,6 @@ Node *takeInputBetter()
         }
         else
         {
-            Node *temp = head;
             tail->next = newNode;
             tail = newNode;
         }
