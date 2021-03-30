@@ -169,6 +169,39 @@ int getSum(BinaryTreeNode<int> *root)
     return (root->data + getSum(root->left) + getSum(root->right));
 }
 
+bool isNodePresent(BinaryTreeNode<int> *root, int x)
+{
+    if (root == nullptr)
+    {
+        return false;
+    }
+
+    if (root->data == x)
+    {
+        return true;
+    }
+
+    return isNodePresent(root->left, x) || isNodePresent(root->right, x);
+}
+
+void mirrorBinaryTree(BinaryTreeNode<int> *root)
+{
+
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    mirrorBinaryTree(root->left);
+    mirrorBinaryTree(root->right);
+
+    BinaryTreeNode<int> *temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+
+    return;
+}
+
 // Generic trees have only two types of traversals, whereas binary trees have 3 types of traversals
 void inOrder(BinaryTreeNode<int> *root)
 {
@@ -530,6 +563,18 @@ int main()
     printTreeLevelWise(root);
     cout << "Number of nodes in the tree = " << numNodes(root) << endl;
     cout << "Sum of nodes in the tree = " << getSum(root) << endl;
+    int element;
+    cout << "Enter a value to be searched in the tree: ";
+    cin >> element;
+    if (isNodePresent(root, element))
+    {
+        cout << "Node with data " << element << " found" << endl;
+    }
+    else
+    {
+        cout << "Node with data " << element << " not found" << endl;
+    }
+    cout << "Sum of nodes in the tree = " << getSum(root) << endl;
     cout << "Inorder traversal: ";
     inOrder(root);
     cout << endl;
@@ -553,6 +598,11 @@ int main()
 
     cout << "Alternate levels printed in reverse:\n";
     zigZagOrder(root);
+
+    cout << "Mirrored tree:\n";
+    mirrorBinaryTree(root);
+    printLevelWise(root);
+
     cout << "Leaf Nodes removed:\n";
     root = removeLeafNodes(root);
     printLevelWise(root);
