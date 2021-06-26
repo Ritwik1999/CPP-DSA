@@ -325,6 +325,38 @@ Node<int> *constructLinkedList(BinaryTreeNode<int> *root)
     return LLPair.first;
 }
 
+vector<int> *getPath(BinaryTreeNode<int> *root, int data)
+{
+    if (root == nullptr)
+    {
+        return nullptr;
+    }
+
+    if (root->data == data)
+    {
+        vector<int> *output = new vector<int>();
+        output->push_back(root->data);
+        return output;
+    }
+
+    else if (data > root->data)
+    {
+        vector<int> *rightOutput = getPath(root->right, data);
+        if (rightOutput != nullptr)
+        {
+            rightOutput->push_back(root->data);
+        }
+        return rightOutput;
+    }
+
+    vector<int> *leftOutput = getPath(root->left, data);
+    if (leftOutput != nullptr)
+    {
+        leftOutput->push_back(root->data);
+    }
+    return leftOutput;
+}
+
 // Sample input1: 1 2 3 4 5 6 7 -1 -1 -1 -1 8 9 -1 -1 -1 -1 -1 -1 (Not a BST)
 // Sample input2: 4 2 6 1 10 5 7 -1 -1 -1 -1 -1 -1 -1 -1 (Not a BST)
 // Sample input2: 4 2 6 1 3 5 7 -1 -1 -1 -1 -1 -1 -1 -1 (BST)
@@ -332,6 +364,23 @@ int main()
 {
     BinaryTreeNode<int> *root = takeInputLevelWise();
     cout << "\nIs the tree a BST? " << isBST3(root) << endl;
+
+    int nodeKey;
+    cout << "Enter node value whose path from root is to be found: ";
+    cin >> nodeKey;
+    vector<int> *path = getPath(root, nodeKey);
+    if (path != nullptr)
+    {
+        for (int i = 0; i < path->size(); i++)
+        {
+            cout << path->at(i) << " ";
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << "Entered key not found in the tree\n";
+    }
 
     // printTree(root);
     // cout << "Elements between 2 and 6: ";
@@ -349,6 +398,7 @@ int main()
     //     cout << "Not Found" << endl;
     // }
 
+    delete path;
     delete root; // invokes destructor
     return 0;
 }

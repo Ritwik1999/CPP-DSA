@@ -546,6 +546,33 @@ vector<Node<int> *> constructLinkedListForEachLevel(BinaryTreeNode<int> *root)
     return ans;
 }
 
+vector<int>* getRootToNodePath(BinaryTreeNode<int> *root, int data) {
+    if (root == nullptr) {
+        return nullptr;
+    }
+
+    if (root->data == data) {
+        vector<int> *output = new vector<int>();
+        // -> means go to the location pointed by the pointer
+        output->push_back(root->data);
+        return output;
+    }
+
+    vector<int> *leftOutput = getRootToNodePath(root->left, data);
+    if (leftOutput != nullptr) {
+        leftOutput->push_back(root->data);
+        return leftOutput;
+    }
+
+    vector<int> *rightOutput = getRootToNodePath(root->right, data);
+    if (rightOutput != nullptr) {
+        rightOutput->push_back(root->data);
+        return rightOutput;
+    }
+
+    return nullptr;
+}
+
 // Sample input: 1 2 3 4 5 6 7 -1 -1 -1 -1 8 9 -1 -1 -1 -1 -1 -1
 // Sample input2: 2 4 5 6 -1 -1 7 20 30 80 90 -1 8 9 -1 -1 -1 -1 -1 -1 -1 -1 -1
 int main()
@@ -603,10 +630,24 @@ int main()
     mirrorBinaryTree(root);
     printLevelWise(root);
 
+    int nodeKey;
+    cout << "Enter node value whose path from root is to be found: ";
+    cin >> nodeKey;
+    vector<int> *path = getRootToNodePath(root, nodeKey);
+    if (path != nullptr) {
+        for (int i = 0; i < path->size(); i++) {
+            cout << path->at(i) << " ";
+        }
+        cout << endl;
+    } else {
+        cout << "Entered key not found in the tree\n";
+    }
+
     cout << "Leaf Nodes removed:\n";
     root = removeLeafNodes(root);
     printLevelWise(root);
 
+    delete path;
     delete root; // invokes destructor
     return 0;
 }
