@@ -16,6 +16,7 @@ using namespace std;
 #include "DeleteEveryNNodesLL.cpp"
 #include "SwapTwoNodesLL.cpp"
 #include "kReverseLL.cpp"
+#include "CycleDetector.cpp"
 
 Node *takeInput()
 {

@@ -1,4 +1,4 @@
-class Pair
+class MyPair
 {
 public:
     Node *head;
@@ -29,22 +29,22 @@ Node *reverseLL_1(Node *head)
 }
 
 // O(n)
-Pair reverseLL_2(Node *head)
+MyPair reverseLL_2(Node *head)
 {
     if (head == nullptr || head->next == nullptr)
     {
-        Pair ans;
+        MyPair ans;
         ans.head = head;
         ans.tail = head;
 
         return ans;
     }
 
-    Pair smallAns = reverseLL_2(head->next);
+    MyPair smallAns = reverseLL_2(head->next);
 
     smallAns.tail->next = head;
     head->next = nullptr;
-    Pair ans;
+    MyPair ans;
     ans.head = smallAns.head;
     ans.tail = head;
 
