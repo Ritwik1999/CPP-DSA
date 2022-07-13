@@ -1,0 +1,23 @@
+Diameter of a binary tree: max distance between any two nodes
+Diameter is not always left height + right height (because max distance doesn't always have to involve the root)
+
+To determine the complexity of tree related problems, determine the (worst case) complexity
+of two cases, a balanced tree, and a skewed tree
+
+When determining the diameter, a balanced tree has the recurrence relation:
+T(n) = Kn + 2T(n/2);     This is similar to merge sort, i.e., O(nlogn)
+
+A skewed tree has this recurrence relation:
+T(n) = Kn + T(n-1);      This is similar to bubble sort, i.e., O(n^2)
+
+NOTE: Height of a non skewed tree = logn
+      Height of a skewed tree = n
+
+Hence, complexity for diamter = O(n*h), where h = height of tree
+
+Notice the diameter function, it invokes the height function, and itself, which again invokes height and itself.
+Hence, the same work (of calculating height) is done multiple times.
+
+Better approach, return both height and diameter from a single call.
+
+See the pic

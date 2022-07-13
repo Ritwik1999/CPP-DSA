@@ -1,0 +1,17 @@
+Pure Virtual Functions:
+Virtual Functions whose definitions are skipped in the base class are called pure virtual functions.
+
+Example:
+class Vehicle {
+public:
+    virtual void print() = 0;
+};
+
+The print method declared above is a pure virtual function.
+
+Any class that has at least one pure virtual function is called an Abstract class.
+Abstract classes cannot be instantiated.
+They are used when for a base class, having a method is relevant only in derived classes, where some necessary information is available.
+Abstract classes make it manadatory for its derived classes to implement all of its pure virtual functions.
+
+Any class that derives from an abstract class has to implement all the pure virtual functions of its parent class, otherwise it'd become an abstract class as well, and one would not be able to instantiate it.

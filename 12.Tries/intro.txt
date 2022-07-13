@@ -1,0 +1,28 @@
+Say we want to implement a dictionary. The important functions would be:
+    1) insertWord
+    2) searchWord
+    3) removeWord
+
+What DS to use?
+
+Sol1: A Hash map could be used, which on average would take O(1) time for all three functions.
+
+NOTE: The precise time actually is O(l), where l is the word length. But since wrt no. of entries in map, it is very small, we ignore it generally.
+
+Sol2: A similar DS is a trie to implement a dictionary.
+
+See trieImg.png to see how a trie looks. All three functions take O(l) time.
+
+To insert a word, traverse from root along the nodes, and make a new branch for when a path (or a part of it) does not exist.
+To search a word, start from the root and keep visiting the deeper levels till you find the word. Finally, check if the corresponding trie node has a word end. If yes, word found.
+The circles with thick boundaries represents that a word ends there.
+
+See trieImg2.png to see how the trie looks after removing the word "bed" from it.
+
+-------------------------------Tries v/s Hashmaps-------------------------------------
+1) Tries are space-opptimized. Say if there are a 1000 words that start with 'a'. We'd store the 'a' only once in tries whereas we'd store it 1000 times in hashmaps.
+
+2) While searching, autocomplete suggstions can be found when using Tries whereas it is not possible in the case of Hashmaps
+
+3) 
+

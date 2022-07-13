@@ -1,0 +1,37 @@
+Given a connected and undirected graph G with N vertices and e edges, a spanning tree of G is a tree which includes all the N vertices.
+
+Remember: A tree is connected and has no cycles
+
+NOTE: For a tree with N vertices, it has N-1 edges
+
+Minimum Spanning Tree (MST):
+If the graph G is connected, undirected, and is weighted, then a spanning tree with minimum total weight is an MST.
+
+----------------------------------------------------------------------------------
+Algos to find MST
+
+1) Kruskals Algorithm
+It uses a greedy approach.
+Pick N-1 edges from the graph such that the chosen edge has the minimum weight amongst all the (not-yet) added edges, and does not introduce a cycle in the MST constructed so far, add it to the MST.
+
+Cycle Detection: 
+Just by checking if two vertices associated with an edge ar already present in the MST, one cannot guarantee that adding the picked edge would introduce a cycle.
+
+For cycle detection, we may check if there already exists a path between two vertices in the MST, and if not, we would add the edge. But, this function would take O(E) time (0 <= E <= V^2). And since we'd to do this E times, the complexity becomes E*O(E), which is very bad.
+
+Another approach is to use the union find algorithm to check if adding the edge is safe or not.
+In this algorithm, we maintain a separate array, say arr (one cell per vertex). Initially, arr[i] = i. Then, after picking the edge with min weight from the graph, we find the topmost parent (i.e., do i = arr[i] till arr[i] != i) for both the vertices associated with the edge. If parents for both the vertices are same, it means there exists a path between them and we do not add the edge in the MST. If not, then we add the edge, and modify any one of the vertices' arr[i] with the other vertices' index.
+In the worst case, we might make arr[i] = i-1 for all 0 < i < V. Thus, the complexity becomes O(V).
+
+2) Prim's Algorithm
+It also uses a greedy approach.
+Maintain two sets of vertices, one that have been added to the mst, and one that aren't. Choose any one vertex as the source vertex. Also, maintain a distance array that stores the distance of all vertices from the source vertex. Set the distance of source to be 0, and all others to INT_MAX. Also maintain a parent array to store the parent of each vertex. Set parent of source to -1.
+While all vertices are not processed, do:
+Pick the vertex with minimum distance value that hasn't been visited, and mark it visited. Then, explore all it's neighbours, and update their distance values with the weight of the edge considered if it is less than their current distance value, and mark their parent as the minimum distance vertex.
+At the end of this, the mst is ready.
+----------------------------------------------------------------------------------
+
+Dijkstra's Algorithm:
+Given a connected, weighted graph with positive weights, this algorithm helps find the shortest path from one source vertex to all other vertices.
+
+It is very similar to Prim's algorithm, but creates a SPT(Shortest path tree) instead of a MST.

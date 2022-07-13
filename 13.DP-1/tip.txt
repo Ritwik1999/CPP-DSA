@@ -1,0 +1,16 @@
+A good way to solve DP problems is to first code the brute force approach (using recursion), add some storage mechanism, while using recursion to do it using the top down approach (Memoization), then shift to iteration instead of recursion to use the bottom-up approach (DP).
+
+Out of the three approaches, though the latter 2 have the same time complexity, but the second approach has a slightly higher space complexity because of recursion.
+
+> While thinking any recursive solution, always figure out the way to break the problem into two parts, one unit of work for us, and the rest for recursion
+
+NOTE: A brute force approach can be converted to a Memoization approach only if there are overlapping subproblems
+
+Thus, while trying to convert a BF approach to Memo approach, always proceed like this:
+
+1) Find if there are overlapping subproblems by drawing a recursive tree and spotting if there are redundant calls
+2) If there are, Memoization can be applied. Next, firgure out the number of unique calls that will be made.
+3) Create an array of that size to store the answers
+4) Finally, decide what is the significance of each cell in the array
+
+Then, code.

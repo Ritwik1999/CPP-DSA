@@ -1,0 +1,25 @@
+Types of Inheritance
+
+1) Single Level - One Base class and one derived class
+Example: Car is a Vehicle (Vehicle -> Car)
+
+2) Multilevel Inheritance - Chain of Single Level
+Example: Car is a Vehicle and Honda City is a Car (Vehicle -> Car -> Honda City)
+
+3) Hierarchical Inheritance - Single Base class and multiple derived classes
+Example: Car is a Vehicle, Bike is a Vehicle, and Truck is a Vehicle. (Vehicle -> Car, Bike, Truck)
+
+4) Multiple Inheritance: A class that has multiple base classes
+Example: A TA (Teaching Assistant) is a Student as well as a Teacher (Teacher, Student -> TA)
+
+5) Hybrid Inheritance: More than one type of inheritance is used
+Example: (A, B -> C -> D -> E, F)
+
+Hybrid (more specifically, Multiple) Inheritance gives rise to the well known Diamond problem.
+The "diamond problem" is an ambiguity that arises when two classes B and C inherit from A, and class D inherits from both B and C. If there is a method in A that B and C have overridden, and D does not override it, then which version of the method does D inherit: that of B, or that of C?
+
+Virtual inheritance is a C++ technique that ensures only one copy of a base class's member variables are inherited by grandchild derived classes.
+
+This feature is most useful for multiple inheritance, as it makes the virtual base a common subobject for the deriving class and all classes that are derived from it. This can be used to avoid the diamond problem by clarifying ambiguity over which ancestor class to use, as from the perspective of the deriving class (D in the example above) the virtual base (A) acts as though it were the direct base class of D, not a class derived indirectly through a base (B or C).
+
+In C++, a base class intended to be common throughout the hierarchy is denoted as virtual with the virtual keyword.

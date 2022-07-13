@@ -1,0 +1,10 @@
+Polymorphism = many forms
+
+From OOP pov, polymorphism is different behaviours in different contexts.
+
+Two types:
+1) Compile-time polymorphism - The behaviour is decided when the program is compiled. Can be achieved through Function and Operator Overloading, and Function (or Method) Overriding (Base Class method overidden in Derived classes, refer Inheritance files)
+
+2) Run-time polymorphism - The behaviour is decided during run time. It is implemented using virtual functions. These functions let the compiler know that the behaviour will be decided at the run time.
+
+If a base class has virtual member functions that are overriden in derived classes, and a pointer of type base class pointing to a derived class object, it can access all those overriden functions (because they were declared as virtual functions in the base class)

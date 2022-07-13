@@ -1,0 +1,49 @@
+Hash Maps are basically like arrays, with the difference being that instead of only integer indices, they map any data type (key) to any other data type (value).
+
+In general, such a DS must support these functions:
+> insert(K key, V value) - inserts a key-value pair if the key is non-existent, otherwise overwrites the existing value
+> getValue(K key) - Fetches the value mapped to a particular key
+> delete(K key) - Removes a (existing) key-value pair
+
+If implemented using a Linked-List, where each node stores a key-value pair, all of the above operations would take O(n) time.
+
+If implemented using a (balanced) BST that uses some ordering amongst the keys, all of the above operations would take O(log(n)) time.
+
+If we use Hashtables, all of the above operations would take O(1) time.
+
+Within the C++ STL, we have map, and unordered_map. The former uses a (balanced) BST approach internally, whereas the latter uses a Hashtable internally, to store key-value pairs.
+
+------------------------Internals of Hashtables----------------------------------
+So, how is it that a string (or any other non integer type) can be used as an index?
+
+Ans: Hash Function. This somehow takes the key and converts it to an integer which can then be used as an index into an array to store the value (this array is called the Bucket Array)
+
+But, what if the hash function outputs a very large number? We may run out of memory if we use a large number as an array index.
+
+Solution: A hash function has two parts: A Hash Code, and a Compression function. The former maps any data type to an integer, and the latter part brings it within a range.
+
+Now, the selection of Hash Code depends on the type of key to be used. For e.g., if the key is also an integer, we might as well use an Identity function
+But if it is a string, we may have to use some complex mathematical function.
+
+The Compression function generates an index such that the value can be stored in the Bucket Array. One exmaple might be modulus Bucket Array size
+
+Another problem is that the compression function might generate the same index for more than one hash code. When for two keys, we get the same index, a Collision occurs.
+
+------------------------Collision Handling----------------------------------
+When a collision occurs, we have two methods of handling it.
+
+1) Closed Hashing - Use the same index to store all the contending pairs. This is done by storing them as nodes of a linked list, whose head address is stored in the bucket array. Also called as Separate Chaining
+
+2) Open Addressing - Use a different location if a collision occurs. How to decide that?
+    hi(a) = h(a) + f(i), where hi(a) is the ith attempt to determine a location where collision wouldn't occur, and f(i) determines the offset from the original index h(a), for the key A
+
+    NOTE: f(0) must be 0, i.e., first attempt must be to store a bucket (pair) in it's assigned location.
+
+Now, varying f(i) can generate numerous Open Addressing methods. Few of them are:
+        a) Linear Probing -> f(i) = i
+        b) Quadratic Probing -> f(i) = i*i
+        c) Double Hashing -> f(i) = i * h1(a), where h1 is a different hashing function
+    Quadratic Probing is better than Linear as it avoids one locality becoming a contentious area.
+
+For practical applications, Closed Hashing works just as well as Open Addressing.  
+

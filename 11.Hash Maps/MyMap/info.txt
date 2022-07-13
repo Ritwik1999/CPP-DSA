@@ -1,0 +1,5 @@
+Our own hashmap using separate chaining for collision.
+
+To avoid confusion, we assume keys will be of type string, and value could be of any type.
+
+The bucket array would contain pointers to heads of linked lists, where each node would have a key, a value, and the address of the next node.

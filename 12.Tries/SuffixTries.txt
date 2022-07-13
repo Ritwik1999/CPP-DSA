@@ -1,0 +1,10 @@
+Suffix Tries are useful for applications like pattern matching (i.e., the Ctrl+F functionality).
+
+Why are regular tries not useful for that?
+Say you have a trie that has, amongst other words, the word "bend". If we try and match any pattern that starts with b, like be, ben, bend, it will be successful. Whereas a pattern like e, or end, or nd, will not be matched.
+
+To do that, we use something like suffix trie wherein we not only just insert the word, but all substrings of it, so that pattern matching can be done.
+
+Though this may take higher space, and more time, it is just an initial investment.
+
+Refer the image Suffix Tries.png
