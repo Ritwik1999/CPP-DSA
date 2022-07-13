@@ -153,6 +153,10 @@ int numNodes(TreeNode<int> *root)
 
 int sumOfNodes(TreeNode<int> *root)
 {
+    if (root == nullptr) {
+        return 0;
+    }
+
     int ans = root->data;
 
     for (int i = 0; i < root->children.size(); i++)
