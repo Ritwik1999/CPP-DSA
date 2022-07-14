@@ -16,14 +16,14 @@ int main()
 
     // Differences between an array and a pointer
     int *ptr = 0;
-    cout << sizeof(ptr) << endl;
-    cout << sizeof(a) << endl;
+    cout << "Size of ptr: " << sizeof(ptr) << endl;
+    cout << "Size of a: " << sizeof(a) << endl;
 
     int *p = &a[0];
     cout << p << endl;
     cout << &p << endl;
     cout << a << endl;
-    cout << &a << endl; // i.e., a == &a[0] == &a
+    cout << &a << endl; // i.e., a == &a[0] == &a (!!!)
 
     p = &a[2];
     /*
