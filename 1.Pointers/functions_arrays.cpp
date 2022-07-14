@@ -4,7 +4,7 @@ using namespace std;
 // Alter the below line as int sum(int a[], int size){...}, to test (1)
 int sum(int *a, int size)
 {
-    // cout << sizeof(a) << endl;
+    cout << "Size of argument: " << sizeof(a) << "; Sum is: ";
     int ans = 0;
     for (int i = 0; i < size; i++)
     {
@@ -23,7 +23,7 @@ int main()
     */
 
     int a[10] = {23, 12, 23, 5, 4, 3, 254, 76, 56, 87};
-    cout << sizeof(a) << endl;
+    cout << "Size of a: " << sizeof(a) << endl;
 
     cout << sum(a, 10) << endl;
     cout << sum(a+3, 7) << endl;
