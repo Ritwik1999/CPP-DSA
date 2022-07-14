@@ -8,7 +8,9 @@ void print(int *p)
 
 void IncrementPointer(int *p)
 {
+    cout << "In function before increment: " << p << endl;
     p = p + 1;
+    cout << "In function after increment: " << p << endl;
 }
 
 void Increment(int *p)
