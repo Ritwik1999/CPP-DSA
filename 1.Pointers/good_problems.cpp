@@ -1,6 +1,7 @@
-// Problem 1
 #include <iostream>
 using namespace std;
+
+// Problem 1
 int main()
 {
     float arr[5] = {12.5, 10.0, 13.5, 90.5, 0.5};
@@ -12,8 +13,6 @@ int main()
 }
 
 //Problem 2
-#include <iostream>
-using namespace std;
 int main()
 {
     char st[] = "ABCD";
