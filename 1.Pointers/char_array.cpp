@@ -9,6 +9,7 @@ int main()
     cout << a << endl;
     cout << b << endl;
     cout << b[1] << endl;
+    cout << (void *) b << endl;
 
     // b = "Ritwik";    Not possible; vars of type char [] are constant literals
 
@@ -28,17 +29,17 @@ int main()
     char *cp = &c1;
 
     cout << c1 << endl;
-    cout << cp << endl;
+    cout << cp << endl; // Will print till it encounters a \0 character
 
-    cout << &(CharArray[4]) << endl;
+    cout << &(CharArray[4]) << endl;    // Will print till it encounters a \0 character
     cout << &(StringLiteral[4]) << endl;
 
     char *cap = &CharArray[0];
-    cout << cap << endl;
+    cout << cap << endl;    // Will print till it encounters a \0 character
 
     /*
         Again, the above behaviour is because of << operator.
-        In case of char[], it is auto terminated by a '\0', and
+        In case of a string literal, it is auto terminated by a '\0', and
         that does not happen with char.
         So, when you try to stream out a pointer to char,
         it prints until it encounters '\0'.
@@ -48,7 +49,7 @@ int main()
     cout << sizeof(StringLiteral) << endl;
 
     CharArray[1] = 'i';
-    cout << CharArray << endl;
+    cout << CharArray << endl;  // Will print till it encounters a \0 character
 
     StringLiteral[1] = 'o';
     cout << StringLiteral << endl;
