@@ -4,6 +4,9 @@ using namespace std;
 int main()
 {
     char StringLiteral[] = "Ritzy 123";
+    cout << StringLiteral << endl;
+    cout << &StringLiteral[0] << endl;
+    cout << StringLiteral[0] << endl;
     char *StringPointer = "Ritzy 123";
 
     /*
