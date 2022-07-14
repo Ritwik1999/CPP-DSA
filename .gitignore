@@ -1,7 +1,4 @@
-*
-!/**/
-!*.*
 **/**/*.out
 **/**/*.pdf
 **/**/*.png
-.vscode
+machine_code
