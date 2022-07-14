@@ -25,6 +25,7 @@ int *ret_ptr()
     return &a;
 }
 
+// TIP: Run in debug mode to see the magic of references
 int main()
 {
     // Variables i1 and j1 are stored in different locations; they are independent of each other
@@ -73,8 +74,8 @@ int main()
     int& ref_var = ret_ref();
     int* ptr_var = ret_ptr();
 
-    cout << ref_var << endl;
-    cout << *ptr_var << endl;
+    cout << ref_var << endl;    // Segmentation fault
+    cout << *ptr_var << endl;   // Segmentation fault
 
     return 0;
 }
