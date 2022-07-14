@@ -55,6 +55,15 @@ int main()
     cout << *dp << endl;
     delete dp;
 
+    char *cp = new char[10]();
+    cp = "Ritwik";  // Warning + (The string literal would be allocated on the stack, not on the heap, making the new operator trivial)
+    cout << cp[0] << endl;
+    cout << cp << endl;
+
+    char *cpa = new char[5]{'h', 'e', 'l', 'l', 'o'};
+    cout << "See its behaviour: " << cpa << endl;
+    delete [] cpa;
+
     p = new int[20];
     delete [] p;
 
