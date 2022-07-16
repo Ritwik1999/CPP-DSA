@@ -14,12 +14,13 @@ using namespace std;
 int main()
 {
     int const i = 10;
-    // int* p = &i;
+    // int* p = &i; // cannot allow modifying the value of i
+    // int * const p = &i;  // cannot allow modifying the value of i
     int const *p = &i;
-    // (*p)++;
 
     int j = 25;
     int const *p2 = &j;
+    // (*p2)++;    // p2 has read only access
     cout << *p2 << endl;
     j++;
     cout << *p2 << endl;
