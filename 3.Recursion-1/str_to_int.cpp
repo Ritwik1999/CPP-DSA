@@ -45,6 +45,22 @@ int strToNum(char input[])
     return (value + smallerOutput);  
 }
 
+// Alternative method
+int strToNum2(char *input, int output) {
+    // Base Case
+    if (input[0] == '\0') {
+        return output;
+    }
+
+    // Calculation
+    int digit = ((int)input[0]) - 48;
+    output = output * 10 + digit;
+
+    // Recursion
+    return strToNum2(input+1, output);
+
+}
+
 int stringToNumber(char input[]) {
     int i = 0;
     while(input[0] != '\0' && input[i] == '0')
@@ -52,7 +68,8 @@ int stringToNumber(char input[]) {
         i++;
     }
     
-    int answer = strToNum(input+i);
+    // int answer = strToNum(input+i);
+    int answer = strToNum2(input+i, 0);
     return answer;
 }
 
