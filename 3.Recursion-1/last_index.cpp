@@ -30,10 +30,7 @@ int lastIndex(int input[], int size, int x)
         return -1;
     }
 
-    else
-    {
-        return smallerOutput + 1;
-    }
+    return smallerOutput + 1;
 }
 
 int main()
