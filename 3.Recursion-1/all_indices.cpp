@@ -15,15 +15,14 @@
 
 /*
     Two methods:
-    1. Split after the first element in the input array (M1.png)
-    2. Split after the second element in the input array (M2.png)
+    1. (M1.png)
+    2. (M2.png)
 */
-
-// Code for method 1.
 
 #include <iostream>
 using namespace std;
 
+// Code for method 1
 int allIndexes(int input[], int size, int x, int output[])
 {
     if (size == 0)
@@ -51,6 +50,23 @@ int allIndexes(int input[], int size, int x, int output[])
     return smallerOutput;
 }
 
+// Code for method 2
+int allIndexes2(int *input, int size, int x, int *output) {
+
+    // Base Case
+    if (size == 0) return 0;
+
+    // Recursive call
+    int new_output_size = allIndexes2(input, size - 1, x, output);
+
+    // Calculation
+    if (input[size-1] == x) {
+        output[new_output_size++] = size-1;
+    }
+
+    return new_output_size;
+}
+
 int main()
 {
     int n;
@@ -69,7 +85,7 @@ int main()
 
     int *output = new int[n];
 
-    int size = allIndexes(input, n, x, output);
+    int size = allIndexes2(input, n, x, output);
     for (int i = 0; i < size; i++)
     {
         cout << output[i] << " ";
