@@ -21,7 +21,7 @@ int main()
     const int i1 = 10;
     int const i2 = 12;      // Both are one and the same
 
-    // constant ref from non const variable => value can be changed
+    // constant reference to non constant variable => value can be changed
     int j = 12;
     const int& k = j;
 
@@ -31,13 +31,13 @@ int main()
     cout << j << endl;
     cout << k << endl;
 
-    // constant ref from constant variable => value can be changed
+    // constant reference to constant variable => value cannot be changed
     const int j2 = 123;
     const int& k2 = j2;
 
-    // reference from a const int => value cannot be changed
+    // reference to a constant int => value cannot be changed
     const int j3 = 123;
-    int& k3 = j3;    // Not possible
+    int& k3 = j3;    // Not possible; trying to obtain higher level access from lower access value
     k3++;
 
     return 0;
