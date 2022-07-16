@@ -3,7 +3,7 @@ using namespace std;
 
 bool checkNumber(int input[], int size, int x)
 {
-    if (size < 1)
+    if (size == 0)
     {
         return false;
     }
@@ -13,9 +13,7 @@ bool checkNumber(int input[], int size, int x)
         return true;
     }
 
-    bool foundInSmaller = checkNumber(input + 1, size - 1, x);
-
-    return ((input[0] == x) || foundInSmaller);
+    return checkNumber(input + 1, size - 1, x);
 }
 
 int main()
