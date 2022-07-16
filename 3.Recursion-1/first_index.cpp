@@ -14,7 +14,7 @@
 #include <iostream>
 using namespace std;
 
-int firstIndex(int input[], int size, int x)
+int firstIndex(int *input, int size, int x)
 {
     if (size == 0)
     {
@@ -28,14 +28,7 @@ int firstIndex(int input[], int size, int x)
 
     int smallerFound = firstIndex(input + 1, size - 1, x);
 
-    if (smallerFound == -1)
-    {
-        return -1;
-    }
-    else
-    {
-        return (smallerFound + 1);
-    }
+    return smallerFound == -1 ? smallerFound : smallerFound + 1;
 }
 
 int main()
@@ -55,4 +48,8 @@ int main()
     cin >> x;
 
     cout << firstIndex(input, n, x) << endl;
+
+    delete [] input;
+
+    return 0;
 }
