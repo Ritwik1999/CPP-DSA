@@ -2,11 +2,6 @@
 using namespace std;
 
 int power(int x, int n) {
-	
-	if (n == 1)
-    {
-        return x;
-    }
     
     if (n == 0)
     {
