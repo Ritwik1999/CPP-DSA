@@ -12,7 +12,8 @@ void g (int const & a) {
 }
 
 void f (int const * p) {
-    (*p)++;
+    (*p)++; // not allowed as it is a pointer to a const int
+    *p++;   // legal; as the pointer is not const
 }
 
 int main()
