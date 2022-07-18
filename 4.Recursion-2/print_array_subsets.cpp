@@ -13,6 +13,7 @@ void printSubsets(int input[], int input_size, int output[], int output_size)
     {
         if (output_size == 0)
         {
+            cout << "Subset with no elements" << endl;
             return;
         }
 
@@ -30,9 +31,9 @@ void printSubsets(int input[], int input_size, int output[], int output_size)
     // Recursion
     printSubsets(input + 1, input_size - 1, output, output_size);
 
-    output[output_size] = input[0];
+    output[output_size++] = input[0];
 
-    printSubsets(input + 1, input_size - 1, output, output_size + 1);
+    printSubsets(input + 1, input_size - 1, output, output_size);
 
     return;
 }
