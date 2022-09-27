@@ -1,92 +1,83 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-void swap(int input[], int posA, int posB)
-{
-    int temp = input[posA];
-    input[posA] = input[posB];
-    input[posB] = temp;
-}
-
-int partition(int input[], int si, int ei)
-{
-    int pivot = input[si], correct_pivot_index = si - 1, initial_pivot_index = si;
-
-    for (int i = si; i <= ei; i++)
-    {
-        if (input[i] <= pivot)
-        {
-            correct_pivot_index++;
-        }
-    }
-
-    swap(input, initial_pivot_index, correct_pivot_index);
-
-    // Bring all elements less than or equal to the pivot element to it's left.
-    int i = si, j = ei;
-    while (i < correct_pivot_index && j > correct_pivot_index)
-    {
-        if (input[i] <= pivot)
-        {
-            i++;
-        }
-
-        else if (input[j] > pivot)
-        {
-            j--;
-        }
-
-        else
-        {
-            swap(input, i, j);
-            i++;
-            j--;
-        }
-    }
-
-    return correct_pivot_index;
-}
-
-void execQuickSort(int input[], int si, int ei)
-{
-    // Base Case
-    if (si >= ei)
-    {
-        return;
-    }
-
-    // Computation i.e. Pivot element get it's correct pos.
-    int pivot_pos = partition(input, si, ei);
-
-    // Recursion
-    execQuickSort(input, si, pivot_pos - 1);
-    execQuickSort(input, pivot_pos + 1, ei);
+void swap(vector<int>& input, int pos1, int pos2) {
+    int temp = input[pos1];
+    input[pos1] = input[pos2];
+    input[pos2] = temp;
 
     return;
 }
 
-void quickSort(int input[], int size)
-{
-    execQuickSort(input, 0, size - 1);
+int partition(vector<int>& input, int start, int end) {
+    // choose a pivot
+    int pivot = input[end];
+
+    // variable to track elements smaller than pivot
+    int lt_pivot_index = start-1;
+
+    // loop through the array segment
+    for (int i = start; i <= end-1; i++) {
+        // if the current element is greater than pivot
+        // ignore it
+        if (input[i] > pivot) {
+            continue;
+        }
+
+        // input[i] is an element <= pivot
+        lt_pivot_index++;
+        
+        // swap elements at indices lt_pivot_index and i
+        swap(input, lt_pivot_index, i);
+    }
+
+    // the correct index of pivot is
+    int pivot_index = lt_pivot_index + 1;
+
+    // swap elements at lt_pivot_index and end
+    swap(input, pivot_index, end);
+
+    // return the pivot's index
+    return pivot_index;
 }
 
-int main()
-{
-    int n;
+void quicksort(vector<int>& input, int start, int end) {
+    if (start >= end) {
+        return;
+    }
+
+    int partition_index = partition(input, start, end);
+
+    quicksort(input, 0, partition_index-1);
+    quicksort(input, partition_index+1, end);
+
+    return;
+}
+
+void quicksort(vector<int>& input) {
+    int size = input.size();
+    quicksort(input, 0, size-1);
+
+    return;
+}
+
+int main() {
+    int n, ele;
     cin >> n;
 
-    int *input = new int[n];
+    vector<int> input;
 
-    for (int i = 0; i < n; i++)
-    {
-        cin >> input[i];
+    for (int i = 0; i < n; i++) {
+        cin >> ele;
+        input.push_back(ele);
     }
 
-    quickSort(input, n);
-    for (int i = 0; i < n; i++)
-    {
-        cout << input[i] << " ";
-    }
+    quicksort(input);
 
-    delete[] input;
+    for (int num : input) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
 }
